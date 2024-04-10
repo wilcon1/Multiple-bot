@@ -3,6 +3,6 @@
 * moderation : ban/kick/mute/clear/welcome
 * suggestons
 * embeds
-* tickets
+* tickets maker
 * giveaways
-* 
+* on_meber_ join embed welcomer
