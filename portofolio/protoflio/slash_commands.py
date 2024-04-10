@@ -65,7 +65,25 @@ class test2(commands.Cog):
       embed.add_field(name="help",value="to see the list of cammands that you can use")
       embed.add_field(name="giveaway",value="make giveaways to members")
       embed.add_field(name="ticket",value="make tickets ")
+      embed.add_field(name="mute",value="muting mebers")
       await interacrion.response.send_message(embed=embed)
+
+      @nextcord.slash_command(name="mute",description="mute member that you want")
+      async def mute(self, interaction: nextcord.Interaction,member:nextcord.Member = SlashOption(description="member that you wanna to mute"),*,reason=None):
+       if (not interaction.permissions.manage_messages):
+          await interaction.response.send_message("mute requires ``manage messages``")
+          return
+       guild = interaction.guild
+       muterole = nextcord.utils.get(guild.roles,name="muted")
+       if muterole is None:
+          await interaction.response.send_message("not found mute role ,creating mute role")
+          muterole = await guild.create_role(name="muted")
+          for channel in guild.channels:
+              await channel.set_permissions(muterole,read_message=True,send_messages=False,read_messages_history=True,speak=False)
+              await member.add_roles(muterole,reason=reason) 
+              await interaction.response.send_message(f"muted {member.name}#{member.discriminator} with reason: {reason}")
+
+
 
 
 
