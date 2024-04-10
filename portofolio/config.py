@@ -1,3 +1,3 @@
 TOKEN=""
-category_id = 1226726917407768678
-ticket_role_id = 1216864349151428742
+category_id = 
+ticket_role_id = 
